@@ -1,0 +1,70 @@
+{% extends 'backend/newbase.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+About-details
+{% endblock %}
+
+{% block content %}
+
+	<main>
+		
+		<section class="hero_in general">
+			<div class="wrapper">
+				<div class="container">
+					<h1 class="fadeInRight">{{ request.user.get_username }}</h1>
+					<h1 class="fadeInUp"><span></span>About Galaxy</h1>
+				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+		
+		
+        
+
+		<div class="bg_color_1">
+			<div class="container margin_80_55">
+				{% if det%}
+					<div class="main_title_2">
+						<span><em></em></span>
+						<h2>{{ det.pst_title}}</h2>
+						<p>{{ det.pst_name}}</p>
+					</div>
+					<div class="row justify-content-between">
+						<div class="col-lg-6 wow" data-wow-offset="150">
+							<figure class="block-reveal">
+								<div class="block-horizzontal"></div>
+								<img src="{{ det.profile_img }}" class="img-fluid" alt="">
+							</figure>
+						</div>
+						<div class="col-lg-5">
+							<p style="font-family: 'Spectral', serif; color: black; font-weight: 400;"><strong>{{ det.pst_name}}</strong>{{ det.content }}</p>
+							<br> <br><br>	
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ex, voluptatibus amet quod et magni aliquid 
+							tempore omnis recusandae quidem asperiores officiis animi repellendus, explicabo nesciunt hic vitae ut iste
+							 odio magnam quisquam nisi itaque! <strong style="font-family: 'Spectral', serif; color: black; font-weight: 900;">{{ det.pst_name}}</strong> maiores aliquam. Magnam, repudiandae. Distinctio atque quis eos
+							  nam rem cupiditate, placeat voluptatem cumque quae molestias! Alias aut sunt omnis? Distinctio iusto nihil,
+							   tenetur commodi numquam sint eius eveniet facilis ducimus illum perferendis eum dolorem non voluptatum quib
+							    adipisci debitis eos libero repellat labore velit pariatur eaque, praesentium quam? Aliquid molestias molestiae 
+								totam ex praesentium <strong style="font-family: 'Spectral', serif; color: black; font-weight: 700;">{{ det.pst_name}}</strong>voluptas amet quisquam, quaerat numquam consequatur reprehenderit explicabo?
+							</p>
+						</div>
+					
+						<a href="{%url 'backend:about' %}" style="margin-left: 40%;"><button style="color: white;
+							padding: 15px; border-radius: 10px;" class="btn btn-danger btn-outline-primary" >Go back</button></a>
+					</div>
+				{% endif %}
+				<!--/row-->
+			</div>
+			<!--/container-->
+		</div>
+		<!--/bg_color_1-->
+
+		
+		</div>
+		<!--/container-->
+	</main>
+	<!--/main-->
+	
+{% endblock %}

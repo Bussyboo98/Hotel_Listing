@@ -1,0 +1,106 @@
+{% extends 'frontend/newbase.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Blog Post
+{% endblock %}
+
+{% block content %}
+	<main>
+		<section class="hero_in general">
+			<div class="wrapper">
+				<div class="container">
+					<h1 class="fadeInUp"><span></span>Galaxy blog</h1>
+					<h1 class="fadeInDown" style="font-family: 'Charm', cursive;">{{ sipst.blg_title }}</h1>
+				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+
+
+
+		<div class="container margin_60_35">
+			<div class="row">
+				{% if sipst %}
+					<div class="col-lg-9">
+						<div class="bloglist singlepost">
+							<p><img alt="" class="img-fluid col-lg-12" src="{{ sipst.blog_img }}" style="border-radius: 20px;"></p>
+							<h1  style="font-family: 'Charm', cursive;">{{ sipst.blg_title }}</h1>
+							<div class="postmeta">
+								<ul>
+									<li><a href="#" style="color: black;" ><i class="icon_folder-alt" style="color: black;"></i> Collections</a></li>
+									<li><a href="#" style="color: black;"><i class="icon_clock_alt"  style="color: black;"></i> {{sipst.date|date:'H:i:a' }}</a></li>
+									<li><a href="#" style="color: black;"><i class="icon_pencil-edit"  style="color: black;"></i> {{ sipst.user.first_name }}</a></li>
+									<!-- <li><a href="#"><i class="icon_comment_alt"></i> (14) Comments</a></li> -->
+								</ul>
+							</div>
+							<!-- /post meta -->
+							<div class="post-content lead">
+								{{ sipst.blg_content }}
+								<br><br><br>
+								{{ sipst.blg_content|truncatewords:50  }}
+							</div>
+							<!-- /post -->
+						</div>
+					<!-- /single-post -->
+				{% endif %}
+					<div id="comments">
+						<h5 style="color: black; font-size: 40px; font-family: serif;">Comments</h5>
+						
+						
+							{% for comment in comm %}
+								<ul>
+									<li>
+										<div class="comment_right clearfix">
+											<div class="comment_info">
+												<figure class="rev-thumb"><img src="../../static/frontend/img/avatar.jpg" height="60px"
+													style="border-radius: 10px;" alt="">
+													<strong style="color: black;">{{ comment.user_name}}</strong><span>|</span>{{ comment.timestamp|timesince}} ago
+												</figure>
+											</div>
+											<p style="font-family: 'Charm', cursive; font-size: 20px;">
+											{{ comment.comment_content}}
+											</p>
+										</div>
+									</li>
+								</ul>
+							{% endfor %}
+						
+					</div>
+
+					<hr>
+
+				{% if request.user.is_authenticated %}
+
+					{% if sipst %}
+						<h5 style="color: black;">Leave a Comment</h5>
+						<form method="POST" action="" class="commenting-form">
+						{% csrf_token %}
+
+							
+							<div class="form-group"> 
+								{{ form.as_p }}
+							</div>
+							
+							<div class="form-group">
+								<button type="submit" class="btn_1 rounded add_bottom_30"> Submit</button>
+							</div>
+						</form>
+					{% endif %}
+
+				{% endif %}
+				</div>
+				<!-- /col -->
+
+				{% include 'frontend/blog_search.html' %}
+				
+				<!-- /aside -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</main>
+	<!--/main-->
+	
+{% endblock %}

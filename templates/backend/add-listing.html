@@ -1,0 +1,42 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Add-Listing
+{% endblock %}
+
+{% block content %}
+  <!-- /Navigation-->
+  <div class="content-wrapper">
+		<div class="container-fluid">
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+				<a href="#">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Add listing</li>
+			</ol>
+				<div class="box_general padding_bottom">
+					<div class="header_box version_2">
+						<h2  style=" font-family: 'Playfair Display', serif; color: black; font-weight: 700;">
+							<i class="fa fa-file"></i>Basic Info</h2>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-6">
+							<form method="post" enctype="multipart/form-data" style="font-family: 'Charm', cursive; font-size: 20px;">
+								{{ listf.as_p }}
+								{% csrf_token %}
+								<br>
+								<button type="submit" class="btn btn-outline-danger" style="width: 50%; margin-left: 30%;
+								 font-size: 25px; cursor: pointer;">Save</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- /box_general-->
+				
+		</div>
+		<!-- /.container-fluid-->
+   	</div>
+ {% endblock %}

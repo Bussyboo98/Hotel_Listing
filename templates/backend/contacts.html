@@ -1,0 +1,138 @@
+{% extends 'backend/newbase.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+CONTACT
+{% endblock %}
+
+{% block content %}
+	<main>
+		<section class="hero_in contacts">
+			<div class="wrapper">
+				<div class="container">
+					<h1 class="fadeInRight">{{ request.user.get_username }}</h1>
+					<h1 class="fadeInLeft"><span></span>Contact Us</h1>
+					
+				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+
+		<div class="contact_info">
+			<div class="container">
+				<ul class="clearfix">
+					<li>
+						<i class="pe-7s-map-marker"></i>
+						<h4 class="text-primary">Address</h4>
+						<span>PO Box 97845 Ikeja<br>Lagos - NIGERIA.</span>
+					</li>
+					<li>
+						<i class="pe-7s-mail-open-file"></i>
+						<h4 class="text-primary">Email address</h4>
+						<span>support@Panagea.com - info@Galaxy.com<br><small>Monday to Friday 9am - 7pm</small></span>
+
+					</li>
+					<li>
+						<i class="pe-7s-phone"></i>
+						<h4 class="text-primary">Contacts info</h4>
+						<span>+ 234 (0) 811 8084 185 + 234 (0) 800 8093 402<br><small>Monday to Friday 9am - 7pm</small></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--/contact_info-->
+
+		<div class="bg_color_1" style="background-size: cover; background-image:url(../../static/frontend/img/jovaughn-stephens-UCZrHNUEdX8-unsplash.jpg);">
+			<div class="container margin_80_55">
+				<div class="row justify-content-between">
+					<div class="col-lg-5">
+						<div class="map_contact">
+						</div>
+						<!-- /map -->
+					</div>
+					<div class="col-lg-6">
+						<h4 style=" border-radius: 10px; padding: 20px; font-family: 
+						'Playfair Display', serif;color:rgb(252, 0, 0); 
+						font-weight: 900;text-align: center; font-size: 50px;">Send a Message</h4>
+
+						<div id="message-contact"></div>
+						<form method="post" action=""  autocomplete="off">
+							{% if messages %}
+								{% for m in messages%}
+									<div class="alert {{ m.tags }}">{{ m }}</div>
+								{% endfor %}
+							{% endif %}
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group" style="color: white;">
+										<label style="color: white;">Name</label>
+										<input class="form-control"  required type="text" id="name_contact" name="name">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label style="color: white;">Last name</label>
+										<input class="form-control" required type="text" id="lastname_contact" name="lastname">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label style="color: white;">Email</label>
+										<input class="form-control"  required type="email" id="email_contact" name="email">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label style="color: white;">Telephone</label>
+										<input class="form-control" required type="text" id="phone_contact" name="phone">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label style="color: white;">Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<label>
+											<input type="radio" name="gender" value="Male">
+											<strong style="color: white;">Male</strong>
+								  </label>
+								  <label>
+											<input type="radio" name="gender" value="Female">
+											<strong style="color: white;">Female</strong>
+										</label>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label style="color: white;">Message</label>
+								<textarea class="form-control" id="message_contact" name="message" style="height:150px;"></textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label style="color: white;">Are you human? 3 + 1 =</label>
+										<input class="form-control" type="text" id="verify_contact" name="verify_contact">
+									</div>
+								</div>
+							</div>
+							<p class="add_top_30"><input type="submit" value="submit" class="btn_1 rounded" id="submit-contact"></p>
+							{% csrf_token %}
+						</form>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bg_color_1 -->
+	</main>
+	<!--/main-->
+	
+{% endblock %}
