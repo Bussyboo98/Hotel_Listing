@@ -4,7 +4,7 @@ Theme URI: http://www.ansonika.com/panagea/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 1. SITE STRUCTURE and TYPOGRAPHY
 - 1.1 Typography
@@ -19,7 +19,7 @@ Author URI: http://themeforest.net/user/Ansonika/
 - 2.5 Login/register
 - 2.6 Map styles
 - 2.7 Contacts
-- 2.8 404 page 
+- 2.8 404 page
 - 2.9 Cart section
 - 2.10 Media Gallery
 - 2.11 Faq
@@ -1203,7 +1203,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
   background-color: rgba(1, 0, 0, 0);
 }
 .hero_in.contacts:before {
-  background: url(../img/work.jpg) center center no-repeat;
+  background: url(../img/contact.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 {% block title%}
-Home 
+Login
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@ Home
 			</div>
         </div>
     </section>
-    <br><br> 
+    <br><br>
     <div class="dd" style="background-size: cover; background-image: url(../../static/frontend/img/stand.jpg);">
     <!-- login section -->
     <br><br>
@@ -28,7 +28,7 @@ Home
         <form class="form" method="POST">
             {% if messages %}
                 {% for mes in messages%}
-                    <div class="alert{{ mes.tags }}">{{ mes }}</div>
+                    <div class="alert {{ mes.tags }}">{{ mes }}</div>
                 {% endfor %}
 			{% endif %}
            <div class="form-group">
@@ -53,9 +53,9 @@ Home
                 </div>
                 <!-- <div class="float-right mt-1"><a id="forgot" href="{%url 'backend:reset' %}">Forgot Password?</a></div> -->
             </div>
-    
+
             <input type="submit" name="login" value="Login" class="btn btn-danger btn-block btn_1 rounded full-width">
-            
+
             <div class="text-center add_top_10" style="color: rgb(22, 22, 27); font-weight: 900;">New to Panagea? <strong><a style="color:red;"href="{%url 'backend:register_form' %}">Sign up!</a></strong></div>
         {% csrf_token %}
         </form>
@@ -64,11 +64,11 @@ Home
     </div>
 
 	<!-- dashboard section -->
-    
-                        
-                            
-                  
-	
+
+
+
+
+
 	<!--/call_section-->
 </main>
 <!-- /main -->

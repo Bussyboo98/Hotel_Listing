@@ -26,7 +26,7 @@ Home
 
 					<form method="GET" class="" action="{% url 'frontend:filtersearch' %}">
 						<label class="col-lg-5"></label>
-						<label class="col-lg-5"></label> 
+						<label class="col-lg-5"></label>
 
 						<div class="container">
 							<div class="row">
@@ -43,13 +43,13 @@ Home
 								<input type="submit" class="btn btn-danger btn-outline-primary text-light col-lg-2" value="Search">
 							</div>
 						</div>
-				
-						
-						
+
+
+
 					</form>
 
 				</div>
-				
+
 			</div>
 		</div>
 	</section>
@@ -73,6 +73,7 @@ Home
 									<div class="info">
 										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
 										<h3 style="font-weight: 900;  font-family: 'Playfair Display', serif; ">{{ l.pst_title }}</h3>
+										<br>
 										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{l.price}}</strong> /per person</span>
 									</div>
 								</figure>
@@ -82,15 +83,14 @@ Home
 					{% endif %}
 				</div>
 				<!-- /grid_item -->
-				
 
-	
-			<!-- <a href="#"><strong>View all (157) <i class="arrow_carrot-right"></i></strong></a> -->
+
+
 		</section>
 		<!-- /section -->
 
 	</div>
-	
+
 	<div class="container container-custom margin_30_95">
 		<section class="add_bottom_45">
 			<div class="main_title_3">
@@ -110,6 +110,7 @@ Home
 									<div class="info">
 										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
 										<h3 style="font-weight: 900;  font-family: 'Playfair Display', serif; ">{{ f.pst_title }}</h3>
+										<br>
 										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{f.price}}</strong> /per person</span>
 									</div>
 								</figure>
@@ -117,9 +118,9 @@ Home
 						</div>
 					{% endfor %}
 				{% endif %}
-				<a href="{% url 'frontend:hotel' %}"><strong style="color: red;">View more</strong></a>
+
 			</div>
-			 
+
 		</section>
 	</div>
 	<div class="container container-custom margin_30_95">
@@ -141,6 +142,7 @@ Home
 									<div class="info">
 										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
 										<h3 style=" font-family: 'Playfair Display', serif;">{{ s.pst_title }}</h3>
+										<br>
 										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{s.price}}</strong> /per person</span>
 									</div>
 								</figure>
@@ -148,13 +150,13 @@ Home
 						</div>
 					{% endfor %}
 				{% endif %}
-				<a href="{% url 'frontend:hotel' %}"><strong style="color: red;">View more</strong></a>
+
 			</div>
-					
+
 				</section>
 	</div>
 
-	
+
 	<div class="container margin_80_55">
 		<div class="main_title_2">
 			<span><em></em></span>
@@ -181,19 +183,19 @@ Home
 		</div>
 		<!-- /carousel -->
 	</div>
-				
-	<div class="banner mb-0 col-lg-12 col-sm-12" >
-		<div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)">
-			<div>
+
+	<!--<div class="banner mb-0 col-lg-12 col-sm-12" >-->
+	<!--	<div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)">-->
+	<!--		<div>-->
 				<!-- <small>Adventure</small> -->
-				<h3>Your Perfect<br>Lodging Experience</h3>
-				<p>Activities and accommodations</p>
+	<!--			<h3>Your Perfect<br>Lodging Experience</h3>-->
+	<!--			<p>Activities and accommodations</p>-->
 				<!-- <a href="#" class="btn_1">Read more</a> -->
-			</div>
-		</div>
-		
-	</div>
-	
+	<!--		</div>-->
+	<!--	</div>-->
+
+	<!--</div>-->
+
 
 	<div class="bg_color_1">
 		<div class="container margin_80_55">
@@ -223,7 +225,7 @@ Home
 				{% endif %}
 			</div>
 				<!-- /box_news -->
-				
+
 				<!-- /box_news -->
 			</div>
 			<!-- /row -->
@@ -251,7 +253,7 @@ Home
 
 	<!-- login details -->
 
-	
+
 </main>
 <!-- /main -->
 

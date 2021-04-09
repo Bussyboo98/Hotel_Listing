@@ -4,12 +4,12 @@ from backend import views
 app_name = 'backend'
 
 urlpatterns = [
+    path('index2-page/', views.index2, name='index2'),
     path('', views.login_view, name='login_view'),
     path('admin-login-page/', views.login_userview, name='login_userview'),
    path('dashboard-page/', views.dashboard, name='dashboard'),
    path('user_dashboard-page/', views.user_dashboard, name='user_dashboard'),
    path('logout_view-page/', views.logout_view, name='logout_view'),
-   path('messages-page/', views.messages, name='messages'),
    path('bookings-page/', views.bookings, name='bookings'),
 #    path('listings-page/', views.listings, name='listings'),
    path('listings3-page/', views.new_listings, name='new_listings'),
@@ -68,5 +68,5 @@ urlpatterns = [
 
 
 
-    
+
 ]

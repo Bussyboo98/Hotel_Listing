@@ -1,0 +1,245 @@
+{% extends 'backend/newbase.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Home
+{% endblock %}
+
+{% block content %}
+
+<main>
+	<section class="hero_single version_2">
+		<div class="wrapper">
+			<div class="container">
+				<h3 style="color: rgb(21, 21, 255); font-size: 50px;">GALAXY</h3>
+				<h3 style="color: rgb(255, 251, 251); font-size: 30px;">Book unique experiences</h3>
+				<p>Explore top rated hotels and experiences in Lagos</p>
+				<div>
+					<!-- <form action="{% url 'frontend:filtersearch' %}"  class="search-form">
+						<label class="col-lg-5"></label>
+						<div class="form-group col-lg-8 offset-lg-2">
+							<input type="text" name="f" id="search" class="form-control text-center" placeholder="Search based on price">
+						</div>
+						<button type="submit" id="submit" class="btn_1 rounded col-lg-2"> Search</button>
+					</form> -->
+
+					<form method="GET" class="" action="{% url 'backend:filtersearch' %}">
+						<label class="col-lg-5"></label>
+						<label class="col-lg-5"></label>
+
+						<div class="container">
+							<div class="row">
+								<div class="form-group col-lg-2 offset-lg-2">
+									{{ queryf.place }}
+								</div>
+								<div class="form-group col-lg-2">
+									{{ queryf.category }}
+								</div>
+								<div class="form-group col-lg-2">
+									{{ queryf.price }}
+								</div>
+
+								<input type="submit" class="btn btn-danger btn-outline-primary text-light col-lg-2" value="Search">
+							</div>
+						</div>
+
+
+
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<div class="container container-custom margin_30_95">
+		<section class="add_bottom_45">
+			<div class="main_title_3">
+				<span><em></em></span>
+				<h2>Latest Popular Hotels and Accommodations</h2>
+				<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+			</div>
+
+				<div class="row">
+					{% if latest %}
+						{% for l in latest%}
+						<div class="col-xl-3 col-lg-6 col-md-6">
+							<a href="{% url 'backend:hotel_detail' l.id %}" class="grid_item">
+								<figure>
+									<div class="score"><strong>{{l.rate}}</strong></div>
+									<img src="{{ l.post_img }}" class="img-fluid" style="height: 250px;">
+									<small style="color: white;">{{l.place}}</small>
+									<div class="info">
+										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+										<h3 style="font-weight: 900;  font-family: 'Playfair Display', serif; ">{{ l.pst_title }}</h3>
+										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{l.price}}</strong> /per person</span>
+									</div>
+								</figure>
+							</a>
+						</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<!-- /grid_item -->
+
+		</section>
+		<!-- /section -->
+
+	</div>
+
+	<div class="container container-custom margin_30_95">
+		<section class="add_bottom_45">
+			<div class="main_title_3">
+				<span><em></em></span>
+				<h2>Featured Popular Hotels and Accommodations</h2>
+				<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+			</div>
+			<div class="row">
+				{% if featured %}
+					{% for f in featured %}
+						<div class="col-xl-3 col-lg-6 col-md-6">
+							<a href="{% url 'backend:hotel_detail' f.id %}" class="grid_item">
+								<figure>
+									<div class="score"><strong>{{f.rate}}</strong></div>
+									<img src="{{ f.post_img }}" class="img-fluid" style="height: 250px;">
+									<small style="color: white;">{{f.place}}</small>
+									<div class="info">
+										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+										<h3 style="font-weight: 900;  font-family: 'Playfair Display', serif; ">{{ f.pst_title }}</h3>
+										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{f.price}}</strong> /per person</span>
+									</div>
+								</figure>
+							</a>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+			</div>
+
+		</section>
+	</div>
+	<div class="container container-custom margin_30_95">
+		<section class="add_bottom_45">
+			<div class="main_title_3">
+				<span><em></em></span>
+					<h2>Sponsored Popular Hotels and Accommodations</h2>
+						<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+			</div>
+			<div class="row">
+				{% if sponsored %}
+					{% for s in sponsored %}
+						<div class="col-xl-3 col-lg-6 col-md-6">
+							<a href="{% url 'backend:hotel_detail' s.id %}" class="grid_item">
+								<figure>
+									<div class="score"><strong>{{s.rate}}</strong></div>
+									<img src="{{ s.post_img }}" class="img-fluid" style="height: 250px;">
+									<small style="color: white;">{{s.place}}</small>
+									<div class="info">
+										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+										<h3 style=" font-family: 'Playfair Display', serif;">{{ s.pst_title }}</h3>
+										<span class="price" style="background-color: rgb(38, 38, 156); padding: 10px; border-radius: 5px;">From <strong>#{{s.price}}</strong> /per person</span>
+									</div>
+								</figure>
+							</a>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+			</div>
+
+				</section>
+	</div>
+
+
+	<div class="container margin_80_55">
+		<div class="main_title_2">
+			<span><em></em></span>
+			<h2 style="font-family: 'Charm', cursive; color: black; font-weight: 700; font-size: 40px;">Our Agents</h2>
+			<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+		</div>
+
+		<div id="carousel" class="owl-carousel owl-theme">
+			{% if agents %}
+			{% for s in agents %}
+					<div class="item">
+						<a href="">
+							<div class="title">
+								<h4>{{ s.user_name }}<em>{{s.user_email}} {{s.user_number}}</em></h4>
+							</div><img src="{{ s.post_img }}" alt="" style="" >
+							<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							  </a>
+						</a>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+		<!-- /carousel -->
+	</div>
+
+
+
+
+	<div class="bg_color_1">
+		<div class="container margin_80_55">
+			<div class="main_title_2">
+				<span><em></em></span>
+				<h3 style="color: black; font-weight: 500; font-size: 50px;font-family: 'Lobster', cursive;">News and Events</h3>
+				<p>Lorem ipsum dolor sit amet centore, ipsa, qui quisquam nisi, odio hic </p>
+			</div>
+
+			<div class="row">
+				{% if news %}
+					{% for n in news %}
+						<div class="col-lg-6">
+							<a class="box_news" href="{%url 'backend:blog_post' n.id %}">
+								<figure><img src="{{ n.blog_img }}" alt="">
+									<figcaption class="bg-primary"><strong>{{n.date|date:'d M' }}</strong></figcaption>
+								</figure>
+								<ul>
+									<li>{{ n.user.first_name }}</li>
+									<li></li>
+								</ul>
+								<h4>{{ n.blg_title }}</h4>
+								<p>{{ n.blg_content|truncatewords:15 }}</p>
+							</a>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+				<!-- /box_news -->
+
+				<!-- /box_news -->
+			</div>
+			<!-- /row -->
+			<!-- <p class="btn_home_align"><a href="{% url 'frontend:blog' %" class="btn_1 rounded" style="color: red;">View all news</a></p> -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /bg_color_1 -->
+
+	<div class="call_section">
+		<div class="container clearfix">
+			<div class="col-lg-5 col-md-6 float-right wow" data-wow-offset="250">
+				<div class="block-reveal">
+					<div class="block-vertical"></div>
+					<div class="box_1">
+						<h3>Enjoy a great <em class="text-primary">RELAXATION</em> with us</h3>
+						<p>Ius cu tamquam persequeris, eu veniam apeirian platonem qui, id aliquip voluptatibus pri. Ei mea primis ornatus disputationi. Menandri erroribus cu per, duo solet congue ut. </p>
+						<!-- <a href="#0" class="btn_1 rounded">Read more</a> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/call_section-->
+
+	<!-- login details -->
+
+
+</main>
+<!-- /main -->
+
+{% endblock %}

@@ -13,7 +13,7 @@
 <!-- Favicons-->
 
 <!-- <link rel="shortcut icon" href="{% static 'frontend/img/favicon.ico' %}" type="image/x-icon"> -->
-<link rel="shortcut icon" href="{% static 'frontend/img/galaxy.jfif' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'frontend/img/galaxy (2).png' %}" type="image/x-icon">
 <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'frontend/img/apple-touch-icon-57x57-precomposed.png' %}">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'frontend/img/apple-touch-icon-72x72-precomposed.png' %}">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'frontend/img/apple-touch-icon-114x114-precomposed.png' %}">
@@ -33,14 +33,14 @@
 </head>
 
 <body id="userlogin_bg">
-	
+
 	<nav id="menu" class="fake_menu"></nav>
-	
+
 	<!-- <div id="preloader">
 		<div data-loader="circle-side"></div>
 	</div> -->
 	<!-- End Preload -->
-	
+
 	<div id="login">
 		<aside>
 			<figure>
@@ -78,9 +78,9 @@
 					</div>
 					<!-- <div class="float-right mt-1"><a id="forgot" href="{%url 'backend:reset' %}">Forgot Password?</a></div> -->
 				</div>
-		
+
 				<input type="submit" name="login" value="Login" class="btn btn-danger btn-block btn_1 rounded full-width">
-				
+
 				<div class="text-center add_top_10">New to Galaxy? <strong><a href="{%url 'backend:register_form' %}">Sign up!</a></strong></div>
 			{% csrf_token %}
 			</form>
@@ -88,12 +88,12 @@
 		</aside>
 	</div>
 	<!-- /login -->
-		
+
 	<!-- COMMON SCRIPTS -->
     <script src="{% static 'frontend/js/jquery-2.2.4.min.js' %}"></script>
     <script src="{% static 'frontend/js/common_scripts.js' %}"></script>
     <script src="{% static 'frontend/js/main.js' %}"></script>
-	<script src="{% static 'frontend/assets/validate.js' %}"></script>	
-  
+	<script src="{% static 'frontend/assets/validate.js' %}"></script>
+
 </body>
 </html>

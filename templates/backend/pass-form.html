@@ -19,20 +19,20 @@ Change Password
             </ol>
         </div>
     </div>
-    		
+
 
 		<div class="col-md-6" style=" margin-bottom: -500px;"></div>
             {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-success">{{ message }}</div>
+                {% for mes in messages%}
+                    <div class="alert {{ mes.tags }}">{{ mes }}</div>
                 {% endfor %}
-            {% endif %}
-            
+			{% endif %}
+
             <form method="post" style="margin-left: 300px; margin-top: 80px;">
                 {% csrf_token %}
                 {{ pass_key.as_p }}
                     <input type="submit" value="Change Password" class="btn btn-success">
             </form>
-        
-       
+
+
 {% endblock %}

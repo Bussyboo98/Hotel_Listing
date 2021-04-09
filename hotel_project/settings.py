@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-from django.contrib.messages import constants as messages 
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +19,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [STATIC_DIR,]
+# STATICFILES_DIRS = [STATIC_DIR,]
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
@@ -32,7 +32,7 @@ SECRET_KEY = 'o(m6r6)itk^!r5gd-k#$ok9s$z5_hm@mxbhq-n0ev7zz_yk%!y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'frontend',
     'backend',
- 
+
 ]
 
 MIDDLEWARE = [
@@ -147,3 +147,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT ='/home/Bussy98/Hotel_Listing/static'

@@ -9,7 +9,7 @@ Add-Blog
 {% block content %}
 
  <!-- /Navigation-->
- 
+
 {% if post.instance.pk %}
 <h2>Edit Post</h2>
 {% else %}
@@ -30,6 +30,11 @@ Add-Blog
 			<div class="header_box version_2">
                 <div class="row">
                     <form method="post" enctype="multipart/form-data">
+                 {% if messages %}
+                  {% for mes in messages %}
+                    <div class="alert {{ mes.tags }}">{{ mes }}</div>
+                  {% endfor %}
+                {% endif %}
                         {{ blog.as_p }}
                         {% csrf_token %}
                         {% if blog.instance.pk %}

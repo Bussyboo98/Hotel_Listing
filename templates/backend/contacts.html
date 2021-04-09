@@ -13,7 +13,7 @@ CONTACT
 				<div class="container">
 					<h1 class="fadeInRight">{{ request.user.get_username }}</h1>
 					<h1 class="fadeInLeft"><span></span>Contact Us</h1>
-					
+
 				</div>
 			</div>
 		</section>
@@ -43,7 +43,7 @@ CONTACT
 		</div>
 		<!--/contact_info-->
 
-		<div class="bg_color_1" style="background-size: cover; background-image:url(../../static/frontend/img/jovaughn-stephens-UCZrHNUEdX8-unsplash.jpg);">
+		<div class="bg_color_1" style="background-size: cover;background-position: 50%; background-image:url(../../static/frontend/img/jovaughn-stephens-UCZrHNUEdX8-unsplash.jpg);">
 			<div class="container margin_80_55">
 				<div class="row justify-content-between">
 					<div class="col-lg-5">
@@ -52,8 +52,8 @@ CONTACT
 						<!-- /map -->
 					</div>
 					<div class="col-lg-6">
-						<h4 style=" border-radius: 10px; padding: 20px; font-family: 
-						'Playfair Display', serif;color:rgb(252, 0, 0); 
+						<h4 style=" border-radius: 10px; padding: 20px; font-family:
+						'Playfair Display', serif;color:rgb(252, 0, 0);
 						font-weight: 900;text-align: center; font-size: 50px;">Send a Message</h4>
 
 						<div id="message-contact"></div>
@@ -114,14 +114,7 @@ CONTACT
 								<label style="color: white;">Message</label>
 								<textarea class="form-control" id="message_contact" name="message" style="height:150px;"></textarea>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label style="color: white;">Are you human? 3 + 1 =</label>
-										<input class="form-control" type="text" id="verify_contact" name="verify_contact">
-									</div>
-								</div>
-							</div>
+
 							<p class="add_top_30"><input type="submit" value="submit" class="btn_1 rounded" id="submit-contact"></p>
 							{% csrf_token %}
 						</form>
@@ -134,5 +127,5 @@ CONTACT
 		<!-- /bg_color_1 -->
 	</main>
 	<!--/main-->
-	
+
 {% endblock %}

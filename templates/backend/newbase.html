@@ -13,7 +13,7 @@
 
         {% endblock%}
     </title>
-    
+
     <!-- Favicons-->
     <link rel="shortcut icon" href="{% static 'frontend/img/galaxy (2).png' %}" type="image/x-icon">
     <!-- <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'frontend/img/apple-touch-icon-57x57-precomposed.png' %}">
@@ -37,17 +37,17 @@
 </head>
 
 <body>
-		
+
 	<div id="page">
-		
+
 	<header class="header menu_fixed">
 		<!-- <div id="preloader"><div data-loader="circle-side"></div></div>/Page Preload -->
 		<div id="logo">
 			<a href="{%url 'index' %}">
-				<img src="../../static/frontend/img/galaxy (2).png" width="350" height="250" data-retina="true" alt="" class="logo_normal" 
-				style="margin-top:-100px; margin-left: -80px; "> 
-				<img src="../../static/frontend/img/galaxy (2).png" width="350" height="250" data-retina="true" alt="" class="logo_sticky" 
-				style="margin-bottom: -60%; margin-top: -50%; margin-left: -20%;"> 
+				<img src="../../static/frontend/img/galaxy (2).png" width="350" height="250" data-retina="true" alt="" class="logo_normal"
+				style="margin-top:-100px; margin-left: -80px; ">
+				<img src="../../static/frontend/img/galaxy (2).png" width="350" height="250" data-retina="true" alt="" class="logo_sticky"
+				style="margin-bottom: -60%; margin-top: -50%; margin-left: -20%;">
 				<!-- <strong><h1 style="color: crimson;">GALAXY</h1></strong> -->
 			</a>
 		</div>
@@ -65,17 +65,18 @@
 		<nav id="menu" class="main-menu">
 			<ul>
 				<li><span><a href="" style="font-size: 15px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Welcome , {{ request.user.get_full_name }}</a></span></li>
-				<li><span><a href="{%url 'frontend:homepage' %}">Home</a></span></li>
+				<li><span><a href="{%url 'frontend:homepage' %}">Dashboard</a></span></li>
+				<li><span><a href="{%url 'backend:index2' %}">Home</a></span></li>
 				<li><span><a href="{%url 'backend:about' %}">About</a></span> </li>
 				<li><span><a href="{%url 'backend:hotel' %}">Hotels</a></span></li>
 				<li><span><a href="{%url 'backend:blog' %}">Blog </a></span></li>
-			
+
 				<li><span><a href="{%url 'backend:contact' %}">Contacts</a></span></li>
 				<li class="nav-item"><span>
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                       <i class="fa fa-fw fa-sign-out"></i>Logout</a></span>
                 </li>
-                <li> 
+                <li>
 					<div class="dropdown dropdown-user">
 						<a href="#0" class="logged" data-toggle="dropdown" title="Logged"><img src="../../static/frontend/img/avatar.jpg" class="rounded-circle" style="height: 40px; width: 40px;" alt=""></a>
 						<!-- <div class="dropdown-menu">
@@ -86,16 +87,16 @@
 						</div> -->
 					</div>
 				</li>
-                
+
 			</ul>
 		</nav>
 	</header>
 	<!-- /header -->
-	
+
     {% block content%}
-      
+
     {% endblock%}
-	
+
 
 	<footer>
 		<div class="container margin_60_35">
@@ -120,7 +121,7 @@
 					<h5>Useful links</h5>
 					<ul class="links">
 						<li><a href="{%url 'backend:about' %}">About</a></li>
-			
+
 						<li><a href="{%url 'backend:blog' %}">Blog</a></li>
 						<li><a href="{%url 'backend:contact' %}">Contacts</a></li>
 					</ul>
@@ -135,12 +136,12 @@
 					<h6>Newsletter</h6>
 					<div id="message-newsletter"></div>
 						<form method="POST" action="" name="newsletter_form" >
-							
+
 							<div class="form-group">
 								<input type="email" name="email" id="email" class="form-control" placeholder="Your email">
 								<input type="submit" class="submit" value="submit">
 							</div>
-							{% csrf_token %}	
+							{% csrf_token %}
 						</form>
 					</div>
 				</div>
@@ -184,8 +185,8 @@
 	<!--/footer-->
 	</div>
 	<!-- page -->
-	
-	<!-- Sign In Popup --> 
+
+	<!-- Sign In Popup -->
 	<!-- <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
 		<div class="small-dialog-header">
 			<h3>Sign In</h3>
@@ -231,17 +232,17 @@
 			<!-- {% csrf_token %}
 		</form>
 		<!--form -->
-	<!-- </div> --> 
+	<!-- </div> -->
 	<!-- /Sign In Popup
-	
+
 	<div id="toTop"></div><!-- Back to top button -->
-	
+
 	<!-- COMMON SCRIPTS -->
     <script src="{% static 'frontend/js/jquery-2.2.4.min.js' %}"></script>
     <script src="{% static 'frontend/js/common_scripts.js' %}"></script>
     <script src="{% static 'frontend/js/main.js' %}"></script>
 	<script src="{% static 'frontend/assets/validate.js' %}"></script>
-	
+
 	<!-- DATEPICKER  -->
 	<script>
 	$(function() {
@@ -260,7 +261,7 @@
 	  });
 	});
 	</script>
-	
+
 	<!-- INPUT QUANTITY  -->
 	<script src="{% static 'frontend/js/input_qty.js' %}"></script>
 
@@ -282,6 +283,6 @@
       </div>
     </div>
   </div>
-	
+
 </body>
 </html>

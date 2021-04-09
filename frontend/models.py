@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse 
+from django.urls import reverse
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.exceptions import ObjectDoesNotExist
@@ -15,7 +15,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user_name
-    
+
     def post_img(self):
         if self.user_image:
           return self.user_image.url
@@ -41,10 +41,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 class Category(models.Model):
     cat_name = models.CharField(max_length=100, verbose_name='Category Name')
     cat_desc = models.TextField(blank=True, null=True, verbose_name='Description')
-    
+
     def __str__(self):
         return self.cat_name
-    
+
     class Meta():
         verbose_name_plural='Hotel Category'
 
@@ -52,20 +52,20 @@ class Category(models.Model):
 
 class Location(models.Model):
     location_name = models.CharField(max_length=100, verbose_name='Location Name')
-    
+
     def __str__(self):
         return self.location_name
-    
+
     class Meta():
         verbose_name_plural='Hotel Location'
 
 class BlogCategory(models.Model):
     cat_name = models.CharField(max_length=100, verbose_name=' Blog Category Name')
     cat_desc = models.TextField(blank=True, null=True, verbose_name='Blog Category Description')
-    
+
     def __str__(self):
         return self.cat_name
-    
+
     class Meta():
         verbose_name_plural='Blog Category'
 
@@ -84,12 +84,12 @@ class About(models.Model):
 
     def __str__(self):
         return self.pst_title
-    
+
     def profile_img(self):
         if self.pst_image:
             return self.pst_image.url
         return '/static/frontend/img/avatar1.jpg'
-    
+
     class Meta():
         verbose_name_plural = 'About'
 
@@ -111,7 +111,7 @@ class Hotel(models.Model):
     pst_image5 = models.FileField(null=True, verbose_name='Suite Room Image 2', blank=True, upload_to='uploads/')
     appear_home = models.CharField(max_length=50, choices=APPEAR_HOME_FIELD, default=CHOOSE)
     price = models.IntegerField(verbose_name= 'Room Price')
-    rate = models.CharField(max_length=10, verbose_name='Rating')
+    rate = models.CharField(max_length=10, verbose_name='Hotel Status')
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cat_id = models.ManyToManyField(Category, verbose_name='Category')
@@ -123,31 +123,31 @@ class Hotel(models.Model):
 
     def __str__(self):
         return self.pst_title
-    
+
     class Meta():
         verbose_name_plural = 'Hotel'
 
     def post_img(self):
         if self.pst_image:
           return self.pst_image.url
-    
+
     def post_img1(self):
         if self.pst_image1:
           return self.pst_image1.url
-    
+
     def post_img2(self):
         if self.pst_image2:
           return self.pst_image2.url
 
-    
+
     def post_img3(self):
         if self.pst_image3:
           return self.pst_image3.url
-    
+
     def post_img4(self):
         if self.pst_image4:
           return self.pst_image4.url
-    
+
     def post_img5(self):
         if self.pst_image5:
           return self.pst_image5.url
@@ -172,19 +172,19 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.blg_title
-    
+
     class Meta():
         verbose_name_plural = 'Blog'
 
     def blog_img(self):
         if self.blg_image:
           return self.blg_image.url
-    
+
     @property
     def get_comments(self):
         return self.comments.all()
-    
-  
+
+
 class Comment(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=150, verbose_name= 'User Name')
@@ -194,7 +194,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user_name
-    
+
 
 class Signup(models.Model):
     email = models.EmailField()

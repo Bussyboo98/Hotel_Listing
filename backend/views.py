@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
@@ -38,6 +38,36 @@ from django.db import IntegrityError
 from django.utils.http import urlsafe_base64_decode
 
 # Create your views here.
+
+def index2(request):
+    news = Blog.objects.order_by('-date')[:4]
+    latest = Hotel.objects.order_by('-date')[:4]
+    featured = Hotel.objects.filter(featured=True)[:4]
+    sponsored = Hotel.objects.filter(sponsored=True)[:4]
+    agents = UserProfile.objects.all()
+    location = Location.objects.all()
+    query_form = FilterForm(request.GET)
+
+
+    context = {
+        'latest': latest,
+        'news': news,
+        'featured': featured,
+        'sponsored': sponsored,
+        'agents': agents,
+        'location': location,
+        'queryf': query_form
+    }
+
+    if request.method == 'POST':
+        email = request.POST["email"]
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+
+    return render(request, 'backend/index2.html', context)
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -78,9 +108,6 @@ def logout_view(request):
     logout(request)
     return redirect('backend:login_view')
 
-@login_required(login_url='/dashboard/')
-def messages(request):
-    return render(request, 'backend/messages.html')
 
 @login_required(login_url='/dashboard/')
 def bookings(request):
@@ -122,8 +149,8 @@ def add_listing(request):
             listf = list_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            # messages.success(request, 'Hotel Posted')
-            
+            messages.success(request, 'Hotel Posted')
+
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-listing.html', {'listf': list_form})
@@ -136,7 +163,7 @@ def add_newlisting(request):
             listf = list_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            # messages.success(request, 'Hotel Posted')
+            messages.success(request, 'Hotel Posted')
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
@@ -200,7 +227,7 @@ def activate(request, uidb64, token):
         user = None
     # checking if the user exists, if the token is valid.
     if user is not None and account_activation_token.check_token(user, token):
-        # if valid set active true 
+        # if valid set active true
         user.is_active = True
         # set signup_confirmation true
         user.profile.signup_confirmation = True
@@ -224,7 +251,7 @@ def register_form(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Galaxy Please Activate Your Account'
-            # load a template like get_template() 
+            # load a template like get_template()
             # and calls its render() method immediately.
             message = render_to_string('backend/activation_request.html', {
                 'user': user,
@@ -236,7 +263,7 @@ def register_form(request):
             user.email_user(subject, message)
             return redirect('activation_sent')
 
-            # messages.success(request, 'User Registered')
+            messages.success(request, 'User Registered')
     else:
         register_form = RegisterForm()
     return render(request, 'frontend/register.html', {'reg': register_form})
@@ -248,7 +275,7 @@ def pass_form(request):
         if pass_form.is_valid():
             pass_form.save()
             update_session_auth_hash(request, pass_form.user)
-            # messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Password changed successfully.')
     else:
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/pass-form.html', {'pass_key':pass_form})
@@ -260,7 +287,7 @@ def pass_newform(request):
         if pass_form.is_valid():
             pass_form.save()
             update_session_auth_hash(request, pass_form.user)
-            # messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Password changed successfully.')
     else:
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/pass-newform.html', {'pass_key':pass_form})
@@ -271,7 +298,7 @@ def edit_form(request):
         edit_form = EditUserForm(request.POST, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit-user-profile.html', {'edit_key':edit_form})
@@ -281,7 +308,7 @@ def edit_newform(request):
         edit_form = EditUserForm(request.POST, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit-newuser-profile.html', {'edit_key':edit_form})
@@ -293,7 +320,7 @@ def reset(request):
         if pass_form.is_valid():
             pass_form.save()
             update_session_auth_hash(request, pass_form.user)
-            # messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Password changed successfully.')
     else:
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/reset.html', {'pass_key':pass_form})
@@ -305,7 +332,7 @@ def blog_form(request):
             blog = blog_form.save(commit=False)
             blog.user = request.user
             blog.save()
-            # messages.success(request, 'Blog Posted')
+            messages.success(request, 'Blog Posted')
     else:
         blog_form = BlogForm()
     return render(request, 'backend/add-blog.html', {'blog': blog_form})
@@ -319,7 +346,7 @@ def edit_blog(request, blog_id):
             blogf = edit_form.save(commit=False)
             blogf.user = request.user
             blogf.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditBlog(instance=single_blog)
     return render(request, 'backend/edit-blog.html', {'edit_key':edit_form})
@@ -333,7 +360,7 @@ def edit_listing(request, hotel_id):
             blogf = edit_form.save(commit=False)
             blogf.user = request.user
             blogf.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditListing(instance=single_listing)
     return render(request, 'backend/edit-listing.html', {'edit_key':edit_form})
@@ -392,7 +419,7 @@ def hotel(request):
     page_number = request.GET.get('page')
     person_page_obj = paginated_filter.get_page(page_number)
     context = {
-        'person_page_obj': all_post, 
+        'person_page_obj': all_post,
         'most_recent': most_recent,
     }
     context['person_page_obj'] = person_page_obj
@@ -406,7 +433,7 @@ def hotel_detail(request, pk):
     if request.method == "POST":
         Rform = ReviewForm(request.POST)
         if Rform.is_valid():
-            review = Rform.save(commit=False) 
+            review = Rform.save(commit=False)
             review.post = post
             review.save()
             return redirect('backend:hotel_detail', pk=post.pk)
@@ -422,7 +449,7 @@ def blog(request):
     page_number = request.GET.get('page')
     person_page_obj = paginated_filter.get_page(page_number)
     context = {
-        'person_page_obj': blg_post, 
+        'person_page_obj': blg_post,
         'most_recent': most_recent,
         'agents': agents
     }
@@ -437,7 +464,7 @@ def blog_post(request, pk):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False) 
+            comment = form.save(commit=False)
             comment.post = single_post
             comment.save()
             return redirect('backend:blog_post', pk=single_post.pk)
@@ -446,7 +473,7 @@ def blog_post(request, pk):
         form = CommentForm()
     return render(request, 'backend/blog-post.html', {'comm':comments, 'form':form, 'sipst':single_post})
 
-def contact(request): 
+def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         lastname = request.POST.get('lastname')
@@ -494,7 +521,7 @@ def search(request):
         ).distinct()
     context = {
         'queryset': queryset
-        
+
     }
     return render(request, 'backend/search_results.html', context)
 
@@ -503,7 +530,7 @@ def filtersearch(request):
     query = request.GET.get('f')
     if query:
         queryset = queryset.filter(
-            Q(price__icontains=query) 
+            Q(price__icontains=query)
         ).distinct()
     else:
         queryset = Hotel.objects.all()
