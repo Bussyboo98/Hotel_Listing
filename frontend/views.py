@@ -227,25 +227,39 @@ def search(request):
     return render(request, 'frontend/search_results.html', context)
 
 
+# def filtersearch(request):
+#     if request.method == 'GET':
+#         query_form = FilterForm(request.GET)
+#         queryset = Hotel.objects.all()
+#         if query_form.is_valid():
+#               price = query_form.cleaned_data.get('price')
+#               category = query_form.cleaned_data.get('category')
+#               location = query_form.cleaned_data.get('place')
+#               query = Hotel.objects.filter(price=price, category__cat_name=category, location__location_name=location)
+#               return render(request, 'frontend/filter.html', {'queryset': query, 'queryf': query_form})
+#         else:
+#             # price = queryset.filter(Q(price__icontains=query)).distinct()
+#             price = query_form.cleaned_data.get('price')
+#             cat_id = query_form.cleaned_data.get('category')
+#             place = query_form.cleaned_data.get('place')
+#             # post = Category.objects.all()  
+#             query = Hotel.objects.filter(place=place, price=price, cat_id=cat_id)
+#             return render(request, 'frontend/filter.html', {'queryset': query, 'queryf': query_form})
+#     else:
+#         query_form = FilterForm()
+#     return render(request, 'frontend/filter.html', {'queryf':query_form})
+
 def filtersearch(request):
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
-        queryset = Hotel.objects.all()
         if query_form.is_valid():
-              price = query_form.cleaned_data.get('price')
-              category = query_form.cleaned_data.get('category')
-              location = query_form.cleaned_data.get('place')
-              query = Hotel.objects.filter(price=price, category__cat_name=category, location__location_name=location)
-              return render(request, 'frontend/filter.html', {'queryset': query, 'queryf': query_form})
-        else:
-            # price = queryset.filter(Q(price__icontains=query)).distinct()
+            print('Correct')
             price = query_form.cleaned_data.get('price')
-            cat_id = query_form.cleaned_data.get('category')
+            cat_id = query_form.cleaned_data.get('cat_id')
             place = query_form.cleaned_data.get('place')
-            # post = Category.objects.all()  
+            post = Hotel.objects.all()
             query = Hotel.objects.filter(place=place, price=price, cat_id=cat_id)
-            return render(request, 'frontend/filter.html', {'queryset': query, 'queryf': query_form})
-    else:
-        query_form = FilterForm()
-    return render(request, 'frontend/filter.html', {'queryf':query_form})
-
+            return render(request, 'frontend/filter.html', {'q': query})
+        else:
+            print('Not found')
+    return render(request, 'frontend/filter.html')

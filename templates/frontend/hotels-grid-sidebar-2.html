@@ -101,7 +101,7 @@ Hotel
 							{% if person_page_obj %}
 								{% for a in person_page_obj %}
 										<div class="col-md-6 isotope-item popular">
-											<div class="box_grid" style="height: 850px;">
+											<div class="box_grid" style="height: 900px;">
 												<figure>
 													<a href="{% url 'frontend:hotel_detail' a.id %}" class="wish_bt">{{a.place}}</a>
 													<a href="{% url 'frontend:hotel_detail' a.id %}"><img src="{{ a.post_img }}" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>

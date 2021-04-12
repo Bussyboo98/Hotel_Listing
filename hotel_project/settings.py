@@ -19,7 +19,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-# STATICFILES_DIRS = [STATIC_DIR,]
+STATICFILES_DIRS = [STATIC_DIR,]
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
 

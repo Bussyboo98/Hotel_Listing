@@ -120,12 +120,25 @@ class EditUserForm(forms.ModelForm):
             return user
 
 class PasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(label='Old password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+    new_password1 = forms.CharField(label='New password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+    new_password2= forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+
     botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
                                validators=[validators.MaxLengthValidator(0)])
 
     class Meta():
         model = User
         fields = ['password1', 'password2']
+
+        # widgets = { 
+        #         'password1': forms.NumberInput(attrs={'class': 'form-control'}),
+        #         'password2': forms.NumberInput(attrs={'class': 'form-control'}),
+            
+        #     }
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -135,6 +148,7 @@ class PasswordChangeForm(PasswordChangeForm):
         if commit:
             user.save()
             return user
+
 
 class EditBlog(forms.ModelForm):
     
@@ -203,7 +217,7 @@ class ListingForm(forms.ModelForm):
             'pst_image3': forms.FileInput(attrs={'class': 'form-control'}),
             'pst_image4': forms.FileInput(attrs={'class': 'form-control'}),
             'pst_image5': forms.FileInput(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'price': forms.Select(attrs={'class': 'form-control'}),
             'rate': forms.NumberInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'place': forms.TextInput(attrs={'class': 'form-control'}),
@@ -247,17 +261,102 @@ class ReviewForm(forms.ModelForm):
     
 class FilterForm(forms.ModelForm):
     
-    place = forms.CharField(label='Hotel Location', widget=forms.TextInput(
+    ONE = "10000"
+    TWO = "15000"
+    THREE = "20000"
+    FOUR = "25000"
+    FIVE = "30000"
+    SIX = "35000"
+    SEVEN = "40000"
+    EIGHT = "45000"
+    NINE = "50000"
+    TEN = "55000"
+    ONE1 = "60000"
+    TWO2 = "65000"
+    THREE3 = "70000"
+    FOUR4 = "75000"
+    FIVE5 = "80000"
+    SIX6 = "85000"
+    SEVEN7 = "90000"
+    EIGHT8 = "95000"
+    NINE9 = "100,000"    
+    CHOOSE = ""
+
+    PRICE= [
+         (ONE, ' 10000'),
+         (TWO, ' 15000'),
+         (THREE, ' 20000'),
+         (FOUR, ' 25000'),
+         (FIVE, ' 30000'),
+         (SIX, ' 35000'),
+         (SEVEN, ' 40000'),
+         (EIGHT, ' 45000'),
+         (NINE, ' 50000'),
+         (TEN, ' 55000'),
+         (ONE1, ' 60000'),
+         (TWO2, ' 65000'),
+         (THREE3, ' 70000'),
+         (FOUR4, ' 75000'),
+         (FIVE5, ' 80000'),
+         (SIX6, ' 85000'),
+         (SEVEN7, ' 90000'),
+         (EIGHT8, ' 95000'),
+         (NINE9, ' 100000'),
+         (CHOOSE, 'Price')
+    ]
+     
+    ONE = "Ajah"
+    TWO = "Agege"
+    THREE = "Ikeja"
+    FOUR = "Lekki Phase 1"
+    FIVE = "Lekki Phase 2"
+    SIX = "Ikoyi"
+    SEVEN = "Oshodi"
+    EIGHT = "Magodo"
+    NINE = "Victoria Island"
+    TEN = "Oniru VI"
+    ONE1 = "Mowe"
+    TWO2 = "Ikorodu"
+    THREE3 = "Festac"
+    FOUR4 = "Ojodu"
+    FIVE5 = "Banana Island"
+    SIX6 = "Maryland"
+    SEVEN7 = "Ogba"
+    EIGHT8 = "Barracks" 
+    CHOOSE = ""
+
+    LOCATION= [
+          (ONE, "Ajah"),
+        (TWO, "Agege"),
+        (THREE, "Ikeja"),
+        (FOUR, "Lekki Phase 1"),
+        (FIVE, "Lekki Phase 2"),
+        (SIX, "Ikoyi"),
+        (SEVEN, "Oshodi"),
+        (EIGHT, "Magodo"),
+        (NINE, "Victoria Island"),
+        (TEN, "Oniru VI"),
+        (ONE1, "Mowe"),
+       (TWO2, "Ikorodu"),
+       (THREE3, "Festac"),
+        (FOUR4, "Ojodu"),
+       (FIVE5, "Banana Island"),
+       (SIX6, "Maryland"),
+       (SEVEN7, "Ogba"),
+       (EIGHT8, "Barracks"), 
+       (CHOOSE, 'Location')
+    ]
+
+    price = forms.CharField(required=False, label='Price*', widget=forms.Select(choices=PRICE,
+        attrs={'class': 'form-control', 'placeholder': 'Price'}))
+
+    place = forms.CharField(required=False, label='Location*', widget=forms.Select(choices=LOCATION,
         attrs={'class': 'form-control', 'placeholder': 'Hotel Location'}))
-    category = forms.ModelChoiceField(
+    cat_id = forms.ModelChoiceField(
         queryset=Category.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control'}))
 
-    price = forms.CharField(label='Price*', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Price'}))
-    # price = forms.ModelChoiceField(
-    #     queryset=Hotel.objects.filter(price=price), empty_label='Please Choose',
-    #     widget=forms.Select(attrs={'class': 'form-control'}))
+    
     # location = forms.ModelChoiceField(
     #     queryset=Location.objects.all(), empty_label='Please Choose',
     #     widget=forms.Select(attrs={'class': 'form-control'}))
@@ -265,6 +364,6 @@ class FilterForm(forms.ModelForm):
 
 
     class Meta():
-        fields = ['price',  'cat_id']
+        fields = ['price',  'cat_id', 'place']
         model = Hotel
     

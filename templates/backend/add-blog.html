@@ -29,21 +29,21 @@ Add-Blog
 		<div class="box_general padding_bottom">
 			<div class="header_box version_2">
                 <div class="row">
-                    <form method="post" enctype="multipart/form-data">
-                 {% if messages %}
-                  {% for mes in messages %}
-                    <div class="alert {{ mes.tags }}">{{ mes }}</div>
-                  {% endfor %}
-                {% endif %}
-                        {{ blog.as_p }}
-                        {% csrf_token %}
-                        {% if blog.instance.pk %}
-                            <button type="submit" class="btn btn-warning">Edit Post</button>
-                        {% else %}
-                            <button type="submit" class="btn btn-warning">Add Post</button>
-                        {% endif %}
+                  <form method="post" enctype="multipart/form-data">
+                    {% if messages %}
+                      {% for m in messages %}
+                        <div class="alert {{ m.tags }}">{{ m }}</div>
+                      {% endfor %}
+                    {% endif %}
+                      {{ blog.as_p }}
+                      {% csrf_token %}
+                    {% if blog.instance.pk %}
+                      <button type="submit" class="btn btn-warning">Edit Post</button>
+                    {% else %}
+                      <button type="submit" class="btn btn-warning">Add Post</button>
+                    {% endif %}
 
-                    </form>
+                  </form>
                 </div>
             </div>
         </div>

@@ -190,7 +190,7 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'ogunburebusayo.j@gmail.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'ogunburebusayo.j@gmail.com' , [user.email], fail_silently=True)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")
@@ -526,15 +526,16 @@ def search(request):
     return render(request, 'backend/search_results.html', context)
 
 def filtersearch(request):
-    queryset = Hotel.objects.all()
-    query = request.GET.get('f')
-    if query:
-        queryset = queryset.filter(
-            Q(price__icontains=query)
-        ).distinct()
-    else:
-        queryset = Hotel.objects.all()
-    context = {
-        'queryset': queryset
-    }
-    return render(request, 'backend/filter.html', context)
+    if request.method == 'GET':
+        query_form = FilterForm(request.GET)
+        if query_form.is_valid():
+            print('Correct')
+            price = query_form.cleaned_data.get('price')
+            cat_id = query_form.cleaned_data.get('cat_id')
+            place = query_form.cleaned_data.get('place')
+            post = Hotel.objects.all()
+            query = Hotel.objects.filter(place=place, price=price, cat_id=cat_id)
+            return render(request, 'backend/filter.html', {'q': query})
+        else:
+            print('Not found')
+    return render(request, 'backend/filter.html')

@@ -54,6 +54,12 @@ Add listing
                                 <div class="row">
                                     <div>
                                         <form method="post" enctype="multipart/form-data">
+                                            {% if messages %}
+                                                {% for m in messages%}
+                                                    <div class="alert {{ m.tags }}">{{ m }}</div>
+                                                {% endfor %}
+                                            {% endif %}
+							
                                             {{ listf.as_p }}
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-danger">Save</button>

@@ -102,6 +102,95 @@ class Hotel(models.Model):
         (NO_FEATURE, "Don't show on home"),
         (CHOOSE, 'Please Choose')
     ]
+    
+   
+    ONE = "10000"
+    TWO = "15000"
+    THREE = "20000"
+    FOUR = "25000"
+    FIVE = "30000"
+    SIX = "35000"
+    SEVEN = "40000"
+    EIGHT = "45000"
+    NINE = "50000"
+    TEN = "55000"
+    ONE1 = "60000"
+    TWO2 = "65000"
+    THREE3 = "70000"
+    FOUR4 = "75000"
+    FIVE5 = "80000"
+    SIX6 = "85000"
+    SEVEN7 = "90000"
+    EIGHT8 = "95000"
+    NINE9 = "100,000"    
+    CHOOSE = ""
+
+    PRICE= [
+         (ONE, ' 10000'),
+         (TWO, ' 15000'),
+         (THREE, ' 20000'),
+         (FOUR, ' 25000'),
+         (FIVE, ' 30000'),
+         (SIX, ' 35000'),
+         (SEVEN, ' 40000'),
+         (EIGHT, ' 45000'),
+         (NINE, ' 50000'),
+         (TEN, ' 55000'),
+         (ONE1, ' 60000'),
+         (TWO2, ' 65000'),
+         (THREE3, ' 70000'),
+         (FOUR4, ' 75000'),
+         (FIVE5, ' 80000'),
+         (SIX6, ' 85000'),
+         (SEVEN7, ' 90000'),
+         (EIGHT8, ' 95000'),
+         (NINE9, ' 100000'),
+         (CHOOSE, 'Price')
+    ]
+    
+    
+    ONE = "Ajah"
+    TWO = "Agege"
+    THREE = "Ikeja"
+    FOUR = "Lekki Phase 1"
+    FIVE = "Lekki Phase 2"
+    SIX = "Ikoyi"
+    SEVEN = "Oshodi"
+    EIGHT = "Magodo"
+    NINE = "Victoria Island"
+    TEN = "Oniru VI"
+    ONE1 = "Mowe"
+    TWO2 = "Ikorodu"
+    THREE3 = "Festac"
+    FOUR4 = "Ojodu"
+    FIVE5 = "Banana Island"
+    SIX6 = "Maryland"
+    SEVEN7 = "Ogba"
+    EIGHT8 = "Barracks" 
+    CHOOSE = ""
+
+    LOCATION= [
+          (ONE, "Ajah"),
+        (TWO, "Agege"),
+        (THREE, "Ikeja"),
+        (FOUR, "Lekki Phase 1"),
+        (FIVE, "Lekki Phase 2"),
+        (SIX, "Ikoyi"),
+        (SEVEN, "Oshodi"),
+        (EIGHT, "Magodo"),
+        (NINE, "Victoria Island"),
+        (TEN, "Oniru VI"),
+        (ONE1, "Mowe"),
+       (TWO2, "Ikorodu"),
+       (THREE3, "Festac"),
+        (FOUR4, "Ojodu"),
+       (FIVE5, "Banana Island"),
+       (SIX6, "Maryland"),
+       (SEVEN7, "Ogba"),
+       (EIGHT8, "Barracks"), 
+       (CHOOSE, 'Location')
+    ]
+    
     pst_title = models.CharField(max_length=150, verbose_name= 'Hotel Name')
     pst_image = models.FileField(null=True, verbose_name='Hotel Image', blank=True, upload_to='uploads/')
     pst_image1 = models.FileField(null=True, verbose_name='Hotel Image 1', blank=True, upload_to='uploads/')
@@ -110,7 +199,7 @@ class Hotel(models.Model):
     pst_image4 = models.FileField(null=True, verbose_name='Double Room Image 1', blank=True, upload_to='uploads/')
     pst_image5 = models.FileField(null=True, verbose_name='Suite Room Image 2', blank=True, upload_to='uploads/')
     appear_home = models.CharField(max_length=50, choices=APPEAR_HOME_FIELD, default=CHOOSE)
-    price = models.IntegerField(verbose_name= 'Room Price')
+    price = models.CharField(max_length=40, choices=PRICE, default=CHOOSE)
     rate = models.CharField(max_length=10, verbose_name='Hotel Status')
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -119,7 +208,7 @@ class Hotel(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField()
     sponsored = models.BooleanField()
-    place = models.CharField(max_length=20, verbose_name='Location')
+    place = models.CharField(max_length=20, verbose_name='Location', choices=LOCATION, default=CHOOSE)
 
     def __str__(self):
         return self.pst_title
