@@ -147,6 +147,20 @@ class Hotel(models.Model):
          (NINE9, ' 100000'),
          (CHOOSE, 'Price')
     ]
+    ONE = "Hotel"
+    TWO = "Single Room"
+    THREE = "Double Room"
+    FOUR = "Suite Room"   
+    CHOOSE = ""
+
+    CATEGORY= [
+         (ONE, 'Hotel'),
+         (TWO, ' Single Room'),
+         (THREE, 'Double Room'),
+         (FOUR, 'Suite Room'),
+         (CHOOSE, 'Type')
+    ]
+    
     
     
     ONE = "Ajah"
@@ -203,7 +217,7 @@ class Hotel(models.Model):
     rate = models.CharField(max_length=10, verbose_name='Hotel Status')
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cat_id = models.ManyToManyField(Category, verbose_name='Category')
+    cat_id = models.CharField(max_length=40, choices=CATEGORY, default=CHOOSE)
     # location_id = models.ManyToManyField(Location, verbose_name='Location')
     date = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField()

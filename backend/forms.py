@@ -346,16 +346,29 @@ class FilterForm(forms.ModelForm):
        (EIGHT8, "Barracks"), 
        (CHOOSE, 'Location')
     ]
+    ONE = "Hotel"
+    TWO = "Single Room"
+    THREE = "Double Room"
+    FOUR = "Suite Room"   
+    CHOOSE = ""
+
+    CATEGORY= [
+         (ONE, 'Hotel'),
+         (TWO, ' Single Room'),
+         (THREE, 'Double Room'),
+         (FOUR, 'Suite Room'),
+         (CHOOSE, 'Type')
+    ]
+    
+    
 
     price = forms.CharField(required=False, label='Price*', widget=forms.Select(choices=PRICE,
         attrs={'class': 'form-control', 'placeholder': 'Price'}))
 
     place = forms.CharField(required=False, label='Location*', widget=forms.Select(choices=LOCATION,
         attrs={'class': 'form-control', 'placeholder': 'Hotel Location'}))
-    cat_id = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
-        widget=forms.Select(attrs={'class': 'form-control'}))
-
+    cat_id = forms.CharField(required=False, label='Location*', widget=forms.Select(choices=CATEGORY,
+        attrs={'class': 'form-control', 'placeholder': 'Hotel Type'}))
     
     # location = forms.ModelChoiceField(
     #     queryset=Location.objects.all(), empty_label='Please Choose',
