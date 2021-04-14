@@ -119,10 +119,8 @@ Hotel
 													<br><br>
 													<li><p style="color: blue;">Posted By :   {{ a.user.get_full_name }}</li>
 														<br> <br>
-													{% for c in a.cat_id.all %}
-														
-														<li>Category : <a href="{% url 'frontend:post_from_cat' c.id %}" style="color: black;">{{ c.cat_name }}</a></p></li>
-													{% endfor %}
+														<li><p> Category :{{ a.cat_id }}</p></li>
+
 														<li><p>Time:{{a.date|date:'H:ma' }}</p></li>
 												</ul>
 											</div>

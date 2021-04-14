@@ -357,7 +357,7 @@ class FilterForm(forms.ModelForm):
          (TWO, ' Single Room'),
          (THREE, 'Double Room'),
          (FOUR, 'Suite Room'),
-         (CHOOSE, 'Type')
+         (CHOOSE, 'Hotel Room')
     ]
     
     

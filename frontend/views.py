@@ -133,7 +133,7 @@ def hotel_detail(request, pk):
 
 def blog_post(request, pk):
     # single_post = Blog.objects.get(pk=pk)
-    
+    most_recent = Blog.objects.order_by('date')[:6]
     single_post = get_object_or_404(Blog, pk=pk)
     comments = Comment.objects.filter(post=pk).order_by('-timestamp')
     if request.method == "POST":
@@ -143,7 +143,7 @@ def blog_post(request, pk):
             comment.post = single_post
             comment.save()
             return redirect('frontend:blog_post', pk=single_post.pk)
-        #  single_post = {'form': form, 'most_recent': most_recent,}
+            single_post = {'form': form, 'most_recent': most_recent,}
     else:
         form = CommentForm()
     return render(request, 'frontend/blog-post.html', {'comm':comments, 'form':form, 'sipst':single_post})
